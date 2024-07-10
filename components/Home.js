@@ -6,7 +6,7 @@ import Movie from './Movie';
 import 'antd/dist/antd.css';
 import styles from '../styles/Home.module.css';
 
-const link = 'https://my-moviz-part5-back.vercel.app'
+const link = 'http://localhost:3000'
 
 function Home() {
   const [likedMovies, setLikedMovies] = useState([]);
@@ -17,8 +17,8 @@ function Home() {
       .then(response => response.json())
       .then(data => {
         const travel = `https://image.tmdb.org/t/p/w500`;
-        const newData = data.results.map(e => {
-          return { title: e.original_title, poster: travel + e.poster_path, overview: e.overview.length > 250 ? (e.overview.substring(0, 250) + "...") : e.overview, voteAverage: e.vote_average, voteCount: e.vote_count }
+        const newData = data.movies?.map(e => {
+          return { title: e.title, poster: travel + e.poster_path, overview: e.overview.length > 250 ? (e.overview.substring(0, 250) + "...") : e.overview, voteAverage: e.vote_average, voteCount: e.vote_count }
         })
 
         setMoviesData(newData);
